@@ -1,0 +1,16 @@
+spring:
+  profiles: nacos
+  # tag::configuration-eureka[]
+  cloud:
+    nacos:
+      config:
+        namespace: @profiles.active@
+        prefix: ${spring.appliction.name}
+        file-extension: yaml
+        group: SER_GROUP
+        server-addr: 192.168.137.128:8848
+      discovery:
+        namespace: @profiles.active@
+        register-enabled: true
+        server-addr: 192.168.137.128:8848
+        weight: 1

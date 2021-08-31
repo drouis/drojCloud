@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.droj.uc.repository.CusResourcesRepository">
+    <resultMap id="BaseResultMap" type="com.droj.mbg.model.uc.UmsResources">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="sid" jdbcType="VARCHAR" property="sid"/>
+        <result column="parent_sid" jdbcType="VARCHAR" property="parentSid"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="router" jdbcType="VARCHAR" property="router"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="uri" jdbcType="VARCHAR" property="uri"/>
+        <result column="order_level" jdbcType="INTEGER" property="orderLevel"/>
+        <result column="hidden" jdbcType="INTEGER" property="hidden"/>
+    </resultMap>
+
+    <update id="editResouseHiddenStatus">
+        UPDATE ums_resources r SET r.`hidden` = #{hidden} WHERE 1=1 AND r.id IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <delete id="batchDelResouse" parameterType="list">
+        UPDATE ums_resources r SET r.`hidden` = #{hidden} WHERE 1=1 AND r.id IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

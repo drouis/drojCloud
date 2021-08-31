@@ -1,0 +1,19 @@
+########################## 系统日志管理配置  ##########################
+#日志配置DEBUG,INFO,WARN,ERROR
+#  file: demo_log.log #配置日志生成路径
+#  path: /var/logs #配置日志文件名称
+# 日志配置
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
+    org.springframework.web.reactive: DEBUG
+    root: INFO
+    com.droj.mbg: DEBUG
+    com.droj.uc: INFO
+    com.droj.uc.user.service: INFO
+    com.droj.uc.user.repository: INFO
+    io.swagger.models.parameters.AbstractSerializableParameter: ERROR
+  pattern:
+    file: '%d{yyyy/MM/dd-HH:mm:ss}  [%thread] %-5level %logger- %msg%n'
+    console: '%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n'
+  file: logs/${url}/log

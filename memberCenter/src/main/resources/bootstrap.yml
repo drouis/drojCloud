@@ -1,0 +1,48 @@
+SERVER.APPLICATION.NAME: drojMemberServer
+SERVER.CONST.PORT: 6200
+SERVER.CONST.PATH: /uc
+SECURITY.USER: admin
+SECURITY.PAWD: 1q2w3e4r
+
+
+
+
+# tag::Config_Manager_Area[]
+server:
+  port: ${SERVER.CONST.PORT}
+  servlet:
+    context-path: ${SERVER.CONST.PATH}
+  database:
+    name: droj-uc
+spring:
+  application:
+    name: ${SERVER.APPLICATION.NAME}
+  profiles:
+    active: @profiles.active@ #默认为开发环境
+  cloud:
+    nacos:
+      config:
+        server-addr: @host.address@
+        file-extension: yaml
+        group: SER_GROUP
+        namespace: @profiles.active@
+        prefix: drojMemberServer
+        ext-config:
+          - data-id: common-@profiles.active@.properties
+            group: POP_GROUP
+            refresh: true
+          - data-id: datasource-@profiles.active@.properties
+            group: POP_GROUP
+            refresh: true
+      discovery:
+        server-addr: @host.address@
+        namespace: @profiles.active@
+        register-enabled: true
+        weight: 1
+  jmx:
+    default-domain: drojMemberProject
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: '*'
