@@ -20,7 +20,7 @@ import java.util.List;
  * @version 1.0
  * @Date 20210830
  * @MailTo 49616026@qq.com
- * @CopyRight 小兔电商云科技有限公司
+ * @CopyRight 小兔电商云科技术有限公司
  */
 @RestController
 @RequestMapping("/m")

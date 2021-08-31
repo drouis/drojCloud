@@ -1,12 +1,13 @@
-# 《火商云链系统》
-
-## spring-cloud-group 服务配置说明
-
+《火商云链业务系统》
+====
+-------
+spring-cloud-group CRM基础服务配置手顺
+-------
 ## 有问题反馈
 
 在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
 
-* [SportPlugs](http://www.sportechplus.com/qieapp/#/login) 运动加科技有限公司
+* [TuutPlugs](http://175.24.116.12/huo/#/login) 小兔电商云科技术有限公司
 * 邮件: [mail]:(49616026@qq.com)
 * 微信: 小兔
 
@@ -87,63 +88,3 @@ Maven 本地路径的setting文件需要针对插件的server进行配置
 ```
 
 **_附_**
-
-Docker部署tomcat服务
-
-```dockerfile
-#基础镜像
-FROM tomcat:8.5.68-jdk8
-#作者
-MAINTAINER tuut <49616026@qq.com>
-
-#定义工作目录
-ENV WORK_PATH /usr/local/tomcat/conf
-
-ENV MANAGER_APPS_PATH /usr/local/tomcat/webapps
-
-#定义manager.xml工作目录
-ENV MANAGER_PATH /usr/local/tomcat/conf/Catalina/localhost
-
-#定义要替换的文件名
-ENV USER_CONF_FILE_NAME tomcat-users.xml
-
-#定义要替换的server.xml文件名
-ENV SERVER_CONF_FILE_NAME server.xml
-
-#定义要新增的manager.xml文件名
-ENV MANAGER_CONF_FILE_NAME manager.xml
-
-ENV MANAGER_APPS webapps
-
-#删除原文件tomcat-users.xml
-RUN rm $WORK_PATH/$USER_CONF_FILE_NAME
-
-#复制文件tomcat-users.xml
-COPY  ./$USER_CONF_FILE_NAME $WORK_PATH/
-
-COPY $MANAGER_APPS $MANAGER_APPS_PATH
-
-#删除原文件server.xml
-RUN rm $WORK_PATH/$SERVER_CONF_FILE_NAME
-
-#复制文件server.xml
-COPY  ./$SERVER_CONF_FILE_NAME $WORK_PATH/
-
-#复制文件manager.xml
-COPY  ./$MANAGER_CONF_FILE_NAME $MANAGER_PATH/
-
-```
-
-*
-    1) docker镜像安装语句
-
-``` dockerfile
-docker build -t tomcat:1.0.0 .
-```
-
-*
-    2) docker容器部署语句
-
-``` dockerfile
-docker run --name=tomcat001 -p 9090:9090 -e --restart=always -e TOMCAT_SERVER_ID=tomcat_server_001 -idt tomcat:1.0.0
-```
