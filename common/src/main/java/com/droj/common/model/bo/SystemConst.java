@@ -1,6 +1,8 @@
 package com.droj.common.model.bo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class SystemConst {

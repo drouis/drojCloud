@@ -2,6 +2,7 @@ package com.droj.uc.controller.member;
 
 import com.droj.common.model.bo.CommonResult;
 import com.droj.common.util.MD5Util;
+import com.droj.uc.config.pop.DrojPop;
 import com.droj.uc.service.IMemberService;
 import com.droj.uc.vo.MemberParam;
 import io.swagger.annotations.Api;
@@ -42,7 +43,7 @@ public class MemberDetailHandler {
         } catch (Exception e) {
             log.error(e.getCause().getMessage());
         }
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 //
 
@@ -61,7 +62,7 @@ public class MemberDetailHandler {
             return CommonResult.warn("请输入新密码");
         if (MD5Util.MD5(param.getPwd()).equals(MD5Util.MD5(param.getNPwd())))
             return CommonResult.warn("两次输入的密码不一致,请重新输入");
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     @Data
@@ -72,4 +73,6 @@ public class MemberDetailHandler {
 
     @Autowired
     IMemberService service;
+
+    DrojPop pop;
 }

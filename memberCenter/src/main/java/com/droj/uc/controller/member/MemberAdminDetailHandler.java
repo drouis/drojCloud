@@ -1,6 +1,7 @@
 package com.droj.uc.controller.member;
 
 import com.droj.common.model.bo.CommonResult;
+import com.droj.uc.config.pop.DrojPop;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  * @Date 20210830
  * @MailTo 49616026@qq.com
- * @CopyRight 小兔电商云科技术有限公司
+ * @CopyRight pop.getStrIndexWelcome()
  */
 @RestController
 @RequestMapping("/m/ad/edit")
@@ -32,7 +33,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/editMember")
     @ResponseBody
     public CommonResult adEditMember() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -44,7 +45,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/batchDelMember")
     @ResponseBody
     public CommonResult adBatchDelMember() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -56,7 +57,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/editActive")
     @ResponseBody
     public CommonResult adEditMemberActive() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -68,6 +69,8 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/initPwd")
     @ResponseBody
     public CommonResult initPwd() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
+
+    DrojPop pop;
 }
