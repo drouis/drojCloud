@@ -1,18 +1,16 @@
 package com.droj.mbg.model.uc;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class UmsRoleResourcesRelation implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
-
     @ApiModelProperty(value = "菜单ID")
     private String adminmenuId;
-
     @ApiModelProperty(value = "系统角色ID")
     private String roleId;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

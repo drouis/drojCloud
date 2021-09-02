@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"火商户云系统资源管理", "ums:group:resouse"})
 public class ResouseDetailHandler {
 
+    DrojPop pop = new DrojPop();
+
     /**
      * 修改资源信息
      *
@@ -33,7 +35,7 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/editResouser")
     @ResponseBody
     public CommonResult editResouser() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -45,7 +47,7 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/batchDelResouser")
     @ResponseBody
     public CommonResult batchDelResouser() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -57,8 +59,6 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/editHidden")
     @ResponseBody
     public CommonResult editResouserHidden() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
-
-    DrojPop pop = new DrojPop();
 }

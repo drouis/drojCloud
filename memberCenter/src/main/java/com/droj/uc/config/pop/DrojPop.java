@@ -13,10 +13,9 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class DrojPop {
+    private static String strIndexWelcome = "Welcome to 火商云 INDEX";
     @Value("${server.database.name}")
     private String databaseName;
-
-    private static String strIndexWelcome = "Welcome to 火商云 INDEX";
 
     public static String getStrIndexWelcome() {
         return strIndexWelcome;

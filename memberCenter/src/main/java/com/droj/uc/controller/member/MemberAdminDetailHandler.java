@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"火商户云系统用户管理", "ums:mem:group"})
 public class MemberAdminDetailHandler {
 
+    DrojPop pop;
+
     /**
      * 管理员修改用户信息
      *
@@ -33,7 +35,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/editMember")
     @ResponseBody
     public CommonResult adEditMember() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -45,7 +47,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/batchDelMember")
     @ResponseBody
     public CommonResult adBatchDelMember() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -57,7 +59,7 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/editActive")
     @ResponseBody
     public CommonResult adEditMemberActive() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -69,8 +71,6 @@ public class MemberAdminDetailHandler {
     @PostMapping(value = "/initPwd")
     @ResponseBody
     public CommonResult initPwd() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
-
-    DrojPop pop;
 }

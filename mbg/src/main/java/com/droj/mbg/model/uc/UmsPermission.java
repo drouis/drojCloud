@@ -1,52 +1,39 @@
 package com.droj.mbg.model.uc;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class UmsPermission implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
-
     @ApiModelProperty(value = "业务ID，关联自联Pid")
     private String sid;
-
     @ApiModelProperty(value = "父级权限id,0父权限(系统权限总类别)")
     private Long pid;
-
     @ApiModelProperty(value = "名称")
     private String name;
-
     @ApiModelProperty(value = "权限值")
     private String value;
-
     @ApiModelProperty(value = "图标")
     private String icon;
-
     @ApiModelProperty(value = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）；9->权限分类")
     private Integer type;
-
     @ApiModelProperty(value = "前端资源路径")
     private String uri;
-
     @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
     private Integer status;
-
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
-
     @ApiModelProperty(value = "排序")
     private Integer sort;
-
     @ApiModelProperty(value = "系统权限备用字段1")
     private String permissionMemo1;
-
     @ApiModelProperty(value = "系统权限备用字段2")
     private Integer permissionMemo2;
-
     @ApiModelProperty(value = "系统权限备用字段3")
     private Long permissionMemo3;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

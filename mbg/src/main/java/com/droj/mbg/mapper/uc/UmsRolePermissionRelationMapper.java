@@ -2,8 +2,9 @@ package com.droj.mbg.mapper.uc;
 
 import com.droj.mbg.model.uc.UmsRolePermissionRelation;
 import com.droj.mbg.model.uc.UmsRolePermissionRelationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsRolePermissionRelationMapper {
     long countByExample(UmsRolePermissionRelationExample example);

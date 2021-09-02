@@ -1,43 +1,32 @@
 package com.droj.mbg.model.uc;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class UmsMemberInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
-
     private String username;
-
     private String nickname;
-
     @ApiModelProperty(value = "手机号码")
     private String phone;
-
     @ApiModelProperty(value = "头像")
     private String icon;
-
     @ApiModelProperty(value = "性别：0->未知；1->男；2->女")
     private Integer gender;
-
     @ApiModelProperty(value = "生日")
     private Date birthday;
-
     @ApiModelProperty(value = "所在城市")
     private String city;
-
     @ApiModelProperty(value = "职业")
     private String job;
-
     @ApiModelProperty(value = "用户来源")
     private Integer sourceType;
-
     @ApiModelProperty(value = "注册时间")
     private Date createTime;
-
     private String wechatOpenId;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

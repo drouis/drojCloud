@@ -28,6 +28,10 @@ import java.util.stream.Collectors;
 @Service
 public class MemberServiceImpl implements IMemberService {
     String default_order_str = "%s DESC";
+    @Autowired
+    UmsMemberMapper mapper;
+    @Autowired
+    CusMemberRepository repository;
 
     /**
      * 查询系统内可使用用户
@@ -77,10 +81,10 @@ public class MemberServiceImpl implements IMemberService {
      */
     @Override
     public MemberVo infoBySid(String uSid) {
-        UmsMemberExample _ex =new UmsMemberExample();
+        UmsMemberExample _ex = new UmsMemberExample();
         _ex.createCriteria().andSidEqualTo(uSid);
-        List<UmsMember> _l= mapper.selectByExample(_ex);
-        if(CollectionUtil.isNotEmpty(_l))
+        List<UmsMember> _l = mapper.selectByExample(_ex);
+        if (CollectionUtil.isNotEmpty(_l))
             return chgData(_l.get(0));
         return null;
     }
@@ -179,9 +183,4 @@ public class MemberServiceImpl implements IMemberService {
         vo.setStrIsAdministration(DictUtil.getIsAdminExp(vo.getIsAdministration()));
         return vo;
     }
-
-    @Autowired
-    UmsMemberMapper mapper;
-    @Autowired
-    CusMemberRepository repository;
 }

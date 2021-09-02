@@ -30,6 +30,12 @@ import java.util.List;
 @Api(tags = {"火商户云系统用户角色管理", "ums:group:memRole"})
 public class MemberRoleHandler {
 
+    @Autowired
+    IMemberRoleService memberRoleService;
+    @Autowired
+    IMemberService mService;
+    DrojPop pop = new DrojPop();
+
     /**
      * 用户角色查询
      *
@@ -40,7 +46,7 @@ public class MemberRoleHandler {
     @ResponseBody
     public CommonResult fetchMemberRoleConn(@RequestParam(value = "sid") String uSid) {
         return CommonResult.success(memberRoleService.fetchMemberRoleConn(uSid),
-                pop.getStrIndexWelcome());
+                DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -52,21 +58,16 @@ public class MemberRoleHandler {
     @PostMapping(value = "/edit/MemberRoleConn")
     @ResponseBody
     public CommonResult editMemberRoleConn(@RequestBody MemberRoleParam param) {
-        return CommonResult.success(memberRoleService.editMemberRoleConn(param.getUId(),param.getRoleIds()), pop.getStrIndexWelcome());
+        return CommonResult.success(memberRoleService.editMemberRoleConn(param.getUId(), param.getRoleIds()), DrojPop.getStrIndexWelcome());
     }
 
     @Getter
     @Setter
     @ApiModel("用户角色参数")
-    public static class MemberRoleParam{
+    public static class MemberRoleParam {
         @ApiModelProperty("用户ID")
         Integer uId;
         @ApiModelProperty("绑定的角色列表")
         List<Integer> roleIds;
     }
-    @Autowired
-    IMemberRoleService memberRoleService;
-    @Autowired
-    IMemberService mService;
-    DrojPop pop = new DrojPop();
 }

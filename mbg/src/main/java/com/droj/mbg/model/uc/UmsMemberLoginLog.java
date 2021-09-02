@@ -1,27 +1,22 @@
 package com.droj.mbg.model.uc;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class UmsMemberLoginLog implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
-
     @ApiModelProperty(value = "系统管理员业务ID")
     private String adminId;
-
     @ApiModelProperty(value = "创建系统时间")
     private Date createTime;
-
     @ApiModelProperty(value = "访问IP")
     private String ip;
-
     private String address;
-
     @ApiModelProperty(value = "浏览器登录类型")
     private String userAgent;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

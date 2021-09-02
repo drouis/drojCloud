@@ -10,7 +10,7 @@ public class CusMemberRole {
     @ApiModelProperty("id")
     Long id;
     @ApiModelProperty("业务id")
-    String   sid;
+    String sid;
     @ApiModelProperty("角色名称")
     String name;
     @ApiModelProperty("角色描述")
@@ -24,7 +24,7 @@ public class CusMemberRole {
     @ApiModelProperty("用户手机号")
     String uPhone;
     @ApiModelProperty("用户管理区分")
-    Integer  uIsAdmin;
+    Integer uIsAdmin;
     @ApiModelProperty("用户状态")
     Integer uStatus;
 }

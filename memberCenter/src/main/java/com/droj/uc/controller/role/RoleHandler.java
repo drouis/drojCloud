@@ -4,14 +4,11 @@ import com.droj.common.model.bo.CommonPage;
 import com.droj.common.model.bo.CommonResult;
 import com.droj.uc.config.pop.DrojPop;
 import com.droj.uc.service.IRolerService;
-import com.droj.uc.vo.RoleVo;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * TODO 火商户云系统角色管理
@@ -27,6 +24,10 @@ import java.util.List;
 @RequestMapping("/r")
 @Api(tags = {"火商户云系统角色管理", "ums:group:role"})
 public class RoleHandler {
+
+    @Autowired
+    IRolerService service;
+    DrojPop pop = new DrojPop();
 
     /**
      * 用户信息模块首页
@@ -57,7 +58,7 @@ public class RoleHandler {
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum
     ) {
         PageInfo page = service.fetch(pageNum, pageSize, keyword, 1);
-        return CommonResult.success(CommonPage.restPage(page), pop.getStrIndexWelcome());
+        return CommonResult.success(CommonPage.restPage(page), DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -70,10 +71,6 @@ public class RoleHandler {
     @GetMapping(value = "/info/{id}")
     @ResponseBody
     public CommonResult info(@PathVariable Long id) {
-        return CommonResult.success(service.info(id), pop.getStrIndexWelcome());
+        return CommonResult.success(service.info(id), DrojPop.getStrIndexWelcome());
     }
-
-    @Autowired
-    IRolerService service;
-    DrojPop pop = new DrojPop();
 }

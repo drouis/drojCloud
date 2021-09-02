@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"火商户云系统角色管理", "ums:group:role"})
 public class RoleDetailHandler {
 
+    DrojPop pop = new DrojPop();
+
     /**
      * 修改角色信息
      *
@@ -59,6 +61,4 @@ public class RoleDetailHandler {
     public CommonResult editRolerActive() {
         return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
-
-    DrojPop pop = new DrojPop();
 }

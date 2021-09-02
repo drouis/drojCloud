@@ -29,6 +29,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"火商户云系统用户管理", "ums:mem:group"})
 public class MemberDetailHandler {
 
+    @Autowired
+    IMemberService service;
+//
+    DrojPop pop;
+
     /**
      * 登录用户修改信息
      *
@@ -43,9 +48,8 @@ public class MemberDetailHandler {
         } catch (Exception e) {
             log.error(e.getCause().getMessage());
         }
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
-//
 
     /**
      * 登录用户修改密码
@@ -62,7 +66,7 @@ public class MemberDetailHandler {
             return CommonResult.warn("请输入新密码");
         if (MD5Util.MD5(param.getPwd()).equals(MD5Util.MD5(param.getNPwd())))
             return CommonResult.warn("两次输入的密码不一致,请重新输入");
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     @Data
@@ -70,9 +74,4 @@ public class MemberDetailHandler {
         String pwd;
         String nPwd;
     }
-
-    @Autowired
-    IMemberService service;
-
-    DrojPop pop;
 }

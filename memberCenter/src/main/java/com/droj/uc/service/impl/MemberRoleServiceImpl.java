@@ -19,6 +19,15 @@ import java.util.List;
 @Slf4j
 @Service
 public class MemberRoleServiceImpl implements IMemberRoleService {
+    @Autowired
+    IMemberService mService;
+    @Autowired
+    IRolerService rService;
+    @Autowired
+    UmsRoleMemberRelationMapper mapper;
+    @Autowired
+    CusMemberRoleViewRepository viewRepository;
+
     /**
      * 查询用户下的角色列表
      *
@@ -29,7 +38,7 @@ public class MemberRoleServiceImpl implements IMemberRoleService {
     public List<CusMemberRole> fetchMemberRoleConn(String memberSid) {
         MemberVo mVo = mService.infoBySid(memberSid);
         // 判定是否超级管理员，否则读取绑定的角色
-        if(mVo.getIsAdministration() == new SystemConst().getIS_ADMINISTRATOR()){
+        if (mVo.getIsAdministration() == new SystemConst().getIS_ADMINISTRATOR()) {
             // 读取全部系统角色
             return viewRepository.fetchAdminRoles();
         }
@@ -50,26 +59,17 @@ public class MemberRoleServiceImpl implements IMemberRoleService {
             // 清除制定用户的旧角色列表
             viewRepository.initMemberRole(m.getSid());
             // 填补新的用户角色列表
-            roleIds.forEach(val->{
+            roleIds.forEach(val -> {
                 UmsRoleMemberRelation record = new UmsRoleMemberRelation();
                 record.setAdminId(m.getSid());
                 RoleVo rVo = rService.info(val.longValue());
                 record.setRoleId(rVo.getSid());
                 mapper.insertSelective(record);
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getCause().getMessage());
             return 0;
         }
         return roleIds.size();
     }
-
-    @Autowired
-    IMemberService mService;
-    @Autowired
-    IRolerService rService;
-    @Autowired
-    UmsRoleMemberRelationMapper mapper;
-    @Autowired
-    CusMemberRoleViewRepository viewRepository;
 }

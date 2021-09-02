@@ -54,7 +54,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("微服务平台火商云系统公共信息")
                 .description("微服务平台火商云系统公共信息")
-                .contact(new Contact("TuuT","","4961606@qq.com"))
+                .contact(new Contact("TuuT", "", "4961606@qq.com"))
                 .version("1.0")
                 .build();
     }

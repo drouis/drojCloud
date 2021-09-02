@@ -14,7 +14,7 @@ package com.droj.common.model.bo;
 public enum ResultCode implements IErrorCode {
     SUCCESS(200, "操作成功"),
     FAILED(500, "系统发生不可预知的异常错误,操作失败"),
-    WARN(900,"系统警告: %s"),
+    WARN(900, "系统警告: %s"),
     PARA_ERROR(300, "API接口参数错误。"),
     VALIDATE_FAILED(404001, "参数检验失败"),
     KEY_MAIN_DATA_NOT_EXIST(404002, "关键数据丢失，请刷新数据重试");

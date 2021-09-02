@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface CusMemberRepository {
 
-    List<UmsMember> fetchMembersByKeywords(@Param("keyword")String keyword);
+    List<UmsMember> fetchMembersByKeywords(@Param("keyword") String keyword);
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     int batchDelMember(@Param("ids") List<Long> ids, @Param("activeStatus") Integer activeStatus);

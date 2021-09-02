@@ -1,6 +1,5 @@
 package com.droj.uc.service;
 
-import com.droj.mbg.model.uc.UmsRole;
 import com.droj.uc.repository.model.bo.CusMemberRole;
 
 import java.util.List;

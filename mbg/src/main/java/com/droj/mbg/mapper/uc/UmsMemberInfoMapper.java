@@ -2,8 +2,9 @@ package com.droj.mbg.mapper.uc;
 
 import com.droj.mbg.model.uc.UmsMemberInfo;
 import com.droj.mbg.model.uc.UmsMemberInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsMemberInfoMapper {
     long countByExample(UmsMemberInfoExample example);

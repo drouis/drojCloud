@@ -14,7 +14,7 @@
     </resultMap>
 
     <select id="fetchMembersByKeywords" resultMap="BaseResultMap">
-        SELECT 	m.id,
+        SELECT m.id,
         m.sid,
         m.username,
         m.phone,

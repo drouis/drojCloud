@@ -34,21 +34,17 @@ public class Generator {
 
     //MBG 执行过程中的警告信息
     static List<String> warnings = new ArrayList<String>();
-
+    //当生成的代码重复时，覆盖原代码
+    static boolean overwrite = true;
+    static Configuration config = null;
     @Getter
     @Setter
     @Value("${jdbc.userId}")
     String userId;
-
     @Getter
     @Setter
     @Value("${jdbc.password}")
     String password;
-
-    //当生成的代码重复时，覆盖原代码
-    static boolean overwrite = true;
-
-    static Configuration config = null;
 
     static void initDBConn(String url, String port, String schema) {
         setDataBASEUrl(url);
@@ -94,6 +90,38 @@ public class Generator {
 
     }
 
+    public static String getDataBASEUrl() {
+        return dataBASEUrl;
+    }
+
+    public static void setDataBASEUrl(String dataBASEUrl) {
+        Generator.dataBASEUrl = dataBASEUrl;
+    }
+
+    public static String getDataBasePort() {
+        return dataBasePort;
+    }
+
+    public static void setDataBasePort(String dataBasePort) {
+        Generator.dataBasePort = dataBasePort;
+    }
+
+    public static String getDataBaseSchema() {
+        return dataBaseSchema;
+    }
+
+    public static void setDataBaseSchema(String dataBaseSchema) {
+        Generator.dataBaseSchema = dataBaseSchema;
+    }
+
+    public static Configuration getConfig() {
+        return config;
+    }
+
+    public static void setConfig(Configuration config) {
+        Generator.config = config;
+    }
+
     static class ExecuteInnerClass {
         @Getter
         @Setter
@@ -101,32 +129,6 @@ public class Generator {
 
         public ExecuteInnerClass(MybatisConfigPop pop) {
             this.pop = pop;
-        }
-
-        public void executeMybatis(int flg, String java_model_path, String java_mapper_path, boolean changeFilePath) {
-            if (StringUtils.isEmpty(pop.getUserId()) || StringUtils.isEmpty(pop.getPassword())) {
-                return;
-            }
-            try {
-                DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-                chooseDataBaseMakeCode(pop, flg, java_model_path, java_mapper_path, changeFilePath);
-                if (!ObjectUtil.isEmpty(config)) {
-                    //创建 MBG
-                    MyBatisGenerator myBatisGenerator = new MyBatisGenerator(getConfig(), callback, warnings);
-                    //执行生成代码
-                    myBatisGenerator.generate(null);
-                    //输出警告信息
-                    for (String warning : warnings) {
-                        System.out.println(warning);
-                    }
-                    System.out.println("生成完成！刷新代码目录。");
-                } else {
-                    System.out.println("生成失败！数据库源配置异常，无法建立数据链接。");
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-                System.out.println("生成失败！系统运行异常。" + e.getCause());
-            }
         }
 
         public static void chooseDataBaseMakeCode(MybatisConfigPop pop, int flg, String java_model_path, String java_mapper_path, boolean changeFilePath) {
@@ -386,38 +388,31 @@ public class Generator {
                 System.out.println(e.getMessage());
             }
         }
-    }
 
-
-    public static String getDataBASEUrl() {
-        return dataBASEUrl;
-    }
-
-    public static void setDataBASEUrl(String dataBASEUrl) {
-        Generator.dataBASEUrl = dataBASEUrl;
-    }
-
-    public static String getDataBasePort() {
-        return dataBasePort;
-    }
-
-    public static void setDataBasePort(String dataBasePort) {
-        Generator.dataBasePort = dataBasePort;
-    }
-
-    public static String getDataBaseSchema() {
-        return dataBaseSchema;
-    }
-
-    public static void setDataBaseSchema(String dataBaseSchema) {
-        Generator.dataBaseSchema = dataBaseSchema;
-    }
-
-    public static Configuration getConfig() {
-        return config;
-    }
-
-    public static void setConfig(Configuration config) {
-        Generator.config = config;
+        public void executeMybatis(int flg, String java_model_path, String java_mapper_path, boolean changeFilePath) {
+            if (StringUtils.isEmpty(pop.getUserId()) || StringUtils.isEmpty(pop.getPassword())) {
+                return;
+            }
+            try {
+                DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+                chooseDataBaseMakeCode(pop, flg, java_model_path, java_mapper_path, changeFilePath);
+                if (!ObjectUtil.isEmpty(config)) {
+                    //创建 MBG
+                    MyBatisGenerator myBatisGenerator = new MyBatisGenerator(getConfig(), callback, warnings);
+                    //执行生成代码
+                    myBatisGenerator.generate(null);
+                    //输出警告信息
+                    for (String warning : warnings) {
+                        System.out.println(warning);
+                    }
+                    System.out.println("生成完成！刷新代码目录。");
+                } else {
+                    System.out.println("生成失败！数据库源配置异常，无法建立数据链接。");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("生成失败！系统运行异常。" + e.getCause());
+            }
+        }
     }
 }

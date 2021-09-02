@@ -30,11 +30,13 @@ public interface IRolerService {
 
     /**
      * 无分页查询系统内可使用角色
+     *
      * @param keyword
      * @param activeStatus
      * @return
      */
     List<RoleVo> fetchNoPages(String keyword, Integer activeStatus);
+
     /**
      * 获取指定角色数据
      *

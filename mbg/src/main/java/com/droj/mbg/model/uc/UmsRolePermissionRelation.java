@@ -1,22 +1,19 @@
 package com.droj.mbg.model.uc;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class UmsRolePermissionRelation implements Serializable {
+    private static final long serialVersionUID = 1L;
     @ApiModelProperty(value = "主键ID")
     private Long id;
-
     @ApiModelProperty(value = "系统角色业务ID")
     private String roleId;
-
     @ApiModelProperty(value = "系统权限业务ID")
     private String permissionId;
-
     @ApiModelProperty(value = "角色权限关联备用字段")
     private String relationMemo;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

@@ -34,6 +34,7 @@ public interface IMemberService {
      * @return
      */
     MemberVo info(Long id);
+
     /**
      * 获取指定用户数据
      * 业务ID获取用户数据

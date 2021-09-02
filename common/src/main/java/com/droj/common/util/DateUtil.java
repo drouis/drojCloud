@@ -72,16 +72,15 @@ public final class DateUtil {
      * 每年秒数，默认每年365天.
      */
     public static final long SECONDS_PER_YEAR = 31536000L;
-
-    public static Timestamp getCurrentCreateTime() {
-        return new Timestamp(System.currentTimeMillis());
-    }
-
     /**
      * 常用的时间格式.
      */
     private static final String[] parsePatterns = {"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy/MM/dd",
             "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm"};
+
+    public static Timestamp getCurrentCreateTime() {
+        return new Timestamp(System.currentTimeMillis());
+    }
 
     /**
      * 得到当前日期字符串.
@@ -139,8 +138,7 @@ public final class DateUtil {
     /**
      * 获取某年第一天日期
      *
-     * @param year
-     *            年份
+     * @param year 年份
      * @return Date
      */
     public static Date getYearFirst(int year) {

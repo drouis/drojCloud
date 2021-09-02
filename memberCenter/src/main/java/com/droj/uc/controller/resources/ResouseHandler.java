@@ -25,6 +25,10 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"火商户云系统资源管理", "ums:group:resouse"})
 public class ResouseHandler {
 
+    @Autowired
+    IResourcesService service;
+    DrojPop pop = new DrojPop();
+
     /**
      * 用户信息模块首页
      *
@@ -34,7 +38,7 @@ public class ResouseHandler {
     @GetMapping(value = "/index")
     @ResponseBody
     public CommonResult index() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -54,7 +58,7 @@ public class ResouseHandler {
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum
     ) {
         PageInfo page = service.fetch(pageNum, pageSize, keyword, 1);
-        return CommonResult.success(CommonPage.restPage(page), pop.getStrIndexWelcome());
+        return CommonResult.success(CommonPage.restPage(page), DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -67,10 +71,6 @@ public class ResouseHandler {
     @GetMapping(value = "/info/{id}")
     @ResponseBody
     public CommonResult info(@PathVariable Long id) {
-        return CommonResult.success(service.info(id), pop.getStrIndexWelcome());
+        return CommonResult.success(service.info(id), DrojPop.getStrIndexWelcome());
     }
-
-    @Autowired
-    IResourcesService service;
-    DrojPop pop = new DrojPop();
 }

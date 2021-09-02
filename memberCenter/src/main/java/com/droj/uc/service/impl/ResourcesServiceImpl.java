@@ -11,7 +11,6 @@ import com.droj.uc.repository.CusResourcesRepository;
 import com.droj.uc.service.IResourcesService;
 import com.droj.uc.vo.ResouseParam;
 import com.droj.uc.vo.ResouseVo;
-import com.droj.uc.vo.RoleVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +25,10 @@ import java.util.stream.Collectors;
 @Service
 public class ResourcesServiceImpl implements IResourcesService {
     String default_order_str = "%s DESC";
+    @Autowired
+    UmsResourcesMapper mapper;
+    @Autowired
+    CusResourcesRepository repository;
 
     /**
      * 查询系统内可使用资源
@@ -124,9 +127,4 @@ public class ResourcesServiceImpl implements IResourcesService {
         BeanUtil.copyProperties(old, vo);
         return vo;
     }
-
-    @Autowired
-    UmsResourcesMapper mapper;
-    @Autowired
-    CusResourcesRepository repository;
 }

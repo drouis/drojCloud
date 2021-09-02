@@ -49,14 +49,13 @@ public enum SystemMessageConstCode {
     USERROLE_IS_EXIST(400006, "用户角色已经存在。"),
     END_STR(999, "");
 
+    private Integer code;
+    private String message;
+
     SystemMessageConstCode(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
-
-    private Integer code;
-
-    private String message;
 
     public Integer getCode() {
         return code;

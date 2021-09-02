@@ -2,8 +2,9 @@ package com.droj.mbg.mapper.uc;
 
 import com.droj.mbg.model.uc.UmsResources;
 import com.droj.mbg.model.uc.UmsResourcesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsResourcesMapper {
     long countByExample(UmsResourcesExample example);

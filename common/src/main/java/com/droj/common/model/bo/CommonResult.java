@@ -3,14 +3,12 @@ package com.droj.common.model.bo;
 import java.text.MessageFormat;
 
 public class CommonResult<T> {
+    private String msg;
+    private Integer code;
+    private T data;
+
     public CommonResult() {
     }
-
-    private String msg;
-
-    private Integer code;
-
-    private T data;
 
 
     public CommonResult(Integer errCode, String errMsg, T data) {
@@ -120,6 +118,7 @@ public class CommonResult<T> {
 
     /**
      * 警告返回结果
+     *
      * @param message
      * @param <T>
      * @return
@@ -127,6 +126,7 @@ public class CommonResult<T> {
     public static <T> CommonResult<T> warn(String message) {
         return new CommonResult<T>(ResultCode.WARN.getCode(), message, null);
     }
+
     /**
      * 警告返回结果
      */

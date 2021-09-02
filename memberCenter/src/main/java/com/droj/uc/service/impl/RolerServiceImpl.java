@@ -25,6 +25,10 @@ import java.util.stream.Collectors;
 @Service
 public class RolerServiceImpl implements IRolerService {
     String default_order_str = "%s DESC";
+    @Autowired
+    UmsRoleMapper mapper;
+    @Autowired
+    CusRoleRepository repository;
 
     /**
      * 查询系统内可使用角色
@@ -64,7 +68,7 @@ public class RolerServiceImpl implements IRolerService {
         }
         _ex.setOrderByClause(String.format(default_order_str, "create_time"));
         List<UmsRole> _datas = mapper.selectByExample(_ex);
-        return _datas.stream().map(val->chgData(val)).collect(Collectors.toList());
+        return _datas.stream().map(val -> chgData(val)).collect(Collectors.toList());
     }
 
     /**
@@ -141,9 +145,4 @@ public class RolerServiceImpl implements IRolerService {
         BeanUtil.copyProperties(old, vo);
         return vo;
     }
-
-    @Autowired
-    UmsRoleMapper mapper;
-    @Autowired
-    CusRoleRepository repository;
 }
