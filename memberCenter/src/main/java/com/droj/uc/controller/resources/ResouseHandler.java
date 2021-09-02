@@ -2,15 +2,13 @@ package com.droj.uc.controller.resources;
 
 import com.droj.common.model.bo.CommonPage;
 import com.droj.common.model.bo.CommonResult;
+import com.droj.uc.config.pop.DrojPop;
 import com.droj.uc.service.IResourcesService;
-import com.droj.uc.vo.ResouseVo;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * TODO 火商户云系统资源管理
@@ -24,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/re")
-@Api(tags = {"火商户云系统资源管理", "ums:resouse:group"})
+@Api(tags = {"火商户云系统资源管理", "ums:group:resouse"})
 public class ResouseHandler {
 
     /**
@@ -36,7 +34,7 @@ public class ResouseHandler {
     @GetMapping(value = "/index")
     @ResponseBody
     public CommonResult index() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -47,7 +45,7 @@ public class ResouseHandler {
      * @param pageNum
      * @return
      */
-    @ApiOperation("资源信息基础查询")
+    @ApiOperation("资源信息列表查询")
     @GetMapping(value = "/fetch")
     @ResponseBody
     public CommonResult<CommonPage> fetch(
@@ -56,7 +54,7 @@ public class ResouseHandler {
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum
     ) {
         PageInfo page = service.fetch(pageNum, pageSize, keyword, 1);
-        return CommonResult.success(CommonPage.restPage(page), "Welcome to 火商云 INDEX");
+        return CommonResult.success(CommonPage.restPage(page), pop.getStrIndexWelcome());
     }
 
     /**
@@ -69,9 +67,10 @@ public class ResouseHandler {
     @GetMapping(value = "/info/{id}")
     @ResponseBody
     public CommonResult info(@PathVariable Long id) {
-        return CommonResult.success(service.info(id), "Welcome to 火商云 INDEX");
+        return CommonResult.success(service.info(id), pop.getStrIndexWelcome());
     }
 
     @Autowired
     IResourcesService service;
+    DrojPop pop = new DrojPop();
 }

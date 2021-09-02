@@ -50,6 +50,24 @@ public class RolerServiceImpl implements IRolerService {
     }
 
     /**
+     * 无分页查询系统内可使用角色
+     *
+     * @param keyword
+     * @param activeStatus
+     * @return
+     */
+    @Override
+    public List<RoleVo> fetchNoPages(String keyword, Integer activeStatus) {
+        UmsRoleExample _ex = new UmsRoleExample();
+        if (ObjectUtil.isNotEmpty(activeStatus)) {
+            _ex.createCriteria().andStatusEqualTo(activeStatus);
+        }
+        _ex.setOrderByClause(String.format(default_order_str, "create_time"));
+        List<UmsRole> _datas = mapper.selectByExample(_ex);
+        return _datas.stream().map(val->chgData(val)).collect(Collectors.toList());
+    }
+
+    /**
      * 获取指定角色数据
      *
      * @param id

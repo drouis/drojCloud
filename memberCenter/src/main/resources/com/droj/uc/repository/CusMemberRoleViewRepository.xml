@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.droj.uc.repository.CusMemberRoleViewRepository">
+    <resultMap id="BaseResultMap" type="com.droj.uc.repository.model.bo.CusMemberRole">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="sid" jdbcType="VARCHAR" property="sid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="mngflg" jdbcType="INTEGER" property="mngflg" />
+        <result column="uSid" jdbcType="VARCHAR" property="uSid" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="uPhone" jdbcType="VARCHAR" property="uPhone" />
+        <result column="uIsAdmin" jdbcType="INTEGER" property="uIsAdmin" />
+        <result column="uStatus" jdbcType="INTEGER" property="uStatus" />
+    </resultMap>
+
+    <select id="fetchMemberRolesByuSid" resultMap="BaseResultMap">
+        SELECT
+        v.`id`,
+        v.`sid`,
+        v.`name`,
+        v.`description`,
+        v.`mngflg`,
+        v.`uSid`,
+        v.`username`,
+        v.`uPhone`,
+        v.`uIsAdmin`,
+        v.`uStatus`
+        FROM view_member_role v WHERE 1=1 AND v.`mngflg`=0 AND uSid = #{uSid}
+    </select>
+
+    <select id="fetchAdminRoles" resultMap="BaseResultMap">
+        SELECT
+        v.`id`,
+        v.`sid`,
+        v.`name`,
+        v.`description`,
+        v.`mngflg`,
+        v.`uSid`,
+        v.`username`,
+        v.`uPhone`,
+        v.`uIsAdmin`,
+        v.`uStatus`
+        FROM view_member_role v WHERE 1=1 AND v.`uIsAdmin`=1
+    </select>
+
+
+</mapper>

@@ -2,6 +2,7 @@ package com.droj.uc.controller.role;
 
 import com.droj.common.model.bo.CommonPage;
 import com.droj.common.model.bo.CommonResult;
+import com.droj.uc.config.pop.DrojPop;
 import com.droj.uc.service.IRolerService;
 import com.droj.uc.vo.RoleVo;
 import com.github.pagehelper.PageInfo;
@@ -24,7 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/r")
-@Api(tags = {"火商户云系统角色管理", "ums:role:group"})
+@Api(tags = {"火商户云系统角色管理", "ums:group:role"})
 public class RoleHandler {
 
     /**
@@ -47,7 +48,7 @@ public class RoleHandler {
      * @param pageNum
      * @return
      */
-    @ApiOperation("角色信息基础查询")
+    @ApiOperation("角色信息列表查询")
     @GetMapping(value = "/fetch")
     @ResponseBody
     public CommonResult<CommonPage> fetch(
@@ -56,7 +57,7 @@ public class RoleHandler {
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum
     ) {
         PageInfo page = service.fetch(pageNum, pageSize, keyword, 1);
-        return CommonResult.success(CommonPage.restPage(page), "Welcome to 火商云 INDEX");
+        return CommonResult.success(CommonPage.restPage(page), pop.getStrIndexWelcome());
     }
 
     /**
@@ -69,9 +70,10 @@ public class RoleHandler {
     @GetMapping(value = "/info/{id}")
     @ResponseBody
     public CommonResult info(@PathVariable Long id) {
-        return CommonResult.success(service.info(id), "Welcome to 火商云 INDEX");
+        return CommonResult.success(service.info(id), pop.getStrIndexWelcome());
     }
 
     @Autowired
     IRolerService service;
+    DrojPop pop = new DrojPop();
 }

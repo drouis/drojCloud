@@ -1,6 +1,7 @@
 package com.droj.uc.controller.role;
 
 import com.droj.common.model.bo.CommonResult;
+import com.droj.uc.config.pop.DrojPop;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/r")
-@Api(tags = {"火商户云系统角色管理", "ums:role:group"})
+@Api(tags = {"火商户云系统角色管理", "ums:group:role"})
 public class RoleDetailHandler {
 
     /**
@@ -32,7 +33,7 @@ public class RoleDetailHandler {
     @PostMapping(value = "/editRoler")
     @ResponseBody
     public CommonResult editRoler() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -44,7 +45,7 @@ public class RoleDetailHandler {
     @PostMapping(value = "/batchDelRoler")
     @ResponseBody
     public CommonResult batchDelRoler() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
 
     /**
@@ -56,6 +57,8 @@ public class RoleDetailHandler {
     @PostMapping(value = "/editActive")
     @ResponseBody
     public CommonResult editRolerActive() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, DrojPop.getStrIndexWelcome());
     }
+
+    DrojPop pop = new DrojPop();
 }

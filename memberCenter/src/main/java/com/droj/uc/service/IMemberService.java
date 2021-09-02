@@ -34,6 +34,14 @@ public interface IMemberService {
      * @return
      */
     MemberVo info(Long id);
+    /**
+     * 获取指定用户数据
+     * 业务ID获取用户数据
+     *
+     * @param uSid
+     * @return
+     */
+    MemberVo infoBySid(String uSid);
 
     /**
      * 保存系统用户数据

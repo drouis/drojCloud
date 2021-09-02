@@ -2,12 +2,18 @@ package com.droj.uc.controller.member;
 
 import com.droj.common.model.bo.CommonResult;
 import com.droj.uc.config.pop.DrojPop;
+import com.droj.uc.service.IMemberRoleService;
+import com.droj.uc.service.IMemberService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * TODO 火商户云系统用户角色管理
@@ -21,32 +27,47 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/m")
-@Api(tags = {"火商户云系统用户角色管理", "ums:memgroup:role"})
+@Api(tags = {"火商户云系统用户角色管理", "ums:group:memRole"})
 public class MemberRoleHandler {
 
     /**
-     * 火商户云系统用户角色查询
+     * 用户角色查询
      *
      * @return
      */
-    @ApiOperation("火商户云系统用户角色查询")
+    @ApiOperation("用户角色查询")
     @GetMapping(value = "/fetchMemberRoleConn")
     @ResponseBody
-    public CommonResult fetchMemberRoleConn() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+    public CommonResult fetchMemberRoleConn(@RequestParam(value = "sid") String uSid) {
+
+        return CommonResult.success(memberRoleService.fetchMemberRoleConn(uSid),
+                pop.getStrIndexWelcome());
     }
 
     /**
-     * 火商户云系统用户角色查询
+     * 用户角色编辑
      *
      * @return
      */
-    @ApiOperation("火商户云系统用户角色查询")
+    @ApiOperation("用户角色编辑")
     @GetMapping(value = "/edit/MemberRoleConn")
     @ResponseBody
-    public CommonResult editMemberRoleConn() {
-        return CommonResult.success(null, pop.getStrIndexWelcome());
+    public CommonResult editMemberRoleConn(@RequestBody MemberRoleParam param) {
+        return CommonResult.success(memberRoleService.editMemberRoleConn(param.getUId(),param.getRoleIds()), pop.getStrIndexWelcome());
     }
 
-    DrojPop pop;
+    @Getter
+    @Setter
+    @ApiModel("用户角色参数")
+    class MemberRoleParam{
+        @ApiModelProperty("用户ID")
+        Integer uId;
+        @ApiModelProperty("绑定的角色列表")
+        List<Integer> roleIds;
+    }
+    @Autowired
+    IMemberRoleService memberRoleService;
+    @Autowired
+    IMemberService mService;
+    DrojPop pop = new DrojPop();
 }

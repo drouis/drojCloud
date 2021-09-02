@@ -1,6 +1,7 @@
 package com.droj.uc.controller.resources;
 
 import com.droj.common.model.bo.CommonResult;
+import com.droj.uc.config.pop.DrojPop;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/re")
-@Api(tags = {"火商户云系统资源管理", "ums:resouse:group"})
+@Api(tags = {"火商户云系统资源管理", "ums:group:resouse"})
 public class ResouseDetailHandler {
 
     /**
@@ -32,7 +33,7 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/editResouser")
     @ResponseBody
     public CommonResult editResouser() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -44,7 +45,7 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/batchDelResouser")
     @ResponseBody
     public CommonResult batchDelResouser() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
 
     /**
@@ -56,6 +57,8 @@ public class ResouseDetailHandler {
     @PostMapping(value = "/editHidden")
     @ResponseBody
     public CommonResult editResouserHidden() {
-        return CommonResult.success(null, "Welcome to 火商云 INDEX");
+        return CommonResult.success(null, pop.getStrIndexWelcome());
     }
+
+    DrojPop pop = new DrojPop();
 }

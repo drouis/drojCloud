@@ -17,7 +17,9 @@ import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,13 +40,18 @@ public class MemberServiceImpl implements IMemberService {
      */
     @Override
     public PageInfo fetch(Integer pageNum, Integer pageSize, String keyword, Integer activeStatus) {
-        UmsMemberExample _ex = new UmsMemberExample();
-        if (ObjectUtil.isNotEmpty(activeStatus)) {
-            _ex.createCriteria().andStatusEqualTo(activeStatus);
+        List<UmsMember> _datas = new ArrayList<>();
+        if (!StringUtils.isEmpty(keyword)) {
+            _datas = repository.fetchMembersByKeywords(keyword);
+        } else {
+            UmsMemberExample _ex = new UmsMemberExample();
+            if (ObjectUtil.isNotEmpty(activeStatus)) {
+                _ex.createCriteria().andStatusEqualTo(activeStatus);
+            }
+            _ex.setOrderByClause(String.format(default_order_str, "create_time"));
+            PageHelper.startPage(pageNum, pageSize);
+            _datas = mapper.selectByExample(_ex);
         }
-        _ex.setOrderByClause(String.format(default_order_str, "create_time"));
-        PageHelper.startPage(pageNum, pageSize);
-        List<UmsMember> _datas = mapper.selectByExample(_ex);
         PageInfo page = PageInfo.of(_datas);
         page.setList(_datas.stream().map(val -> chgData(val)).collect(Collectors.toList()));
         return page;
@@ -59,6 +66,23 @@ public class MemberServiceImpl implements IMemberService {
     @Override
     public MemberVo info(Long id) {
         return chgData(mapper.selectByPrimaryKey(id));
+    }
+
+    /**
+     * 获取指定用户数据
+     * 业务ID获取用户数据
+     *
+     * @param uSid
+     * @return
+     */
+    @Override
+    public MemberVo infoBySid(String uSid) {
+        UmsMemberExample _ex =new UmsMemberExample();
+        _ex.createCriteria().andSidEqualTo(uSid);
+        List<UmsMember> _l= mapper.selectByExample(_ex);
+        if(CollectionUtil.isNotEmpty(_l))
+            return chgData(_l.get(0));
+        return null;
     }
 
     /**

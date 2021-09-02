@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/m")
-@Api(tags = {"火商户云系统用户管理", "ums:mem:group"})
+@Api(tags = {"火商户云系统用户管理", "ums:group:mem"})
 public class MemberHandler {
 
     /**
@@ -45,7 +45,7 @@ public class MemberHandler {
      * @param pageNum
      * @return
      */
-    @ApiOperation("用户信息基础查询")
+    @ApiOperation("用户信息列表查询")
     @GetMapping(value = "/fetch")
     @ResponseBody
     public CommonResult<CommonPage> fetch(
@@ -72,6 +72,5 @@ public class MemberHandler {
 
     @Autowired
     IMemberService service;
-
-    DrojPop pop;
+    DrojPop pop = new DrojPop();
 }
