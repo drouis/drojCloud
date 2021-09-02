@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface CusMemberRoleViewRepository {
 
-    String INIT_MEMBER_ROLE_SQL="DELETE FROM `droj-uc`.`ums_role_member_relation` WHERE `admin_id` = ${uSid}";
+    String INIT_MEMBER_ROLE_SQL="DELETE FROM `droj-uc`.`ums_role_member_relation` WHERE `admin_id` = #{uSid}";
 
     /**
      * 用户Sid查询绑定的系统角色

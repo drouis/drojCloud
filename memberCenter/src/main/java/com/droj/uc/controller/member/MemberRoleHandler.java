@@ -39,7 +39,6 @@ public class MemberRoleHandler {
     @GetMapping(value = "/fetchMemberRoleConn")
     @ResponseBody
     public CommonResult fetchMemberRoleConn(@RequestParam(value = "sid") String uSid) {
-
         return CommonResult.success(memberRoleService.fetchMemberRoleConn(uSid),
                 pop.getStrIndexWelcome());
     }
@@ -50,7 +49,7 @@ public class MemberRoleHandler {
      * @return
      */
     @ApiOperation("用户角色编辑")
-    @GetMapping(value = "/edit/MemberRoleConn")
+    @PostMapping(value = "/edit/MemberRoleConn")
     @ResponseBody
     public CommonResult editMemberRoleConn(@RequestBody MemberRoleParam param) {
         return CommonResult.success(memberRoleService.editMemberRoleConn(param.getUId(),param.getRoleIds()), pop.getStrIndexWelcome());
@@ -59,7 +58,7 @@ public class MemberRoleHandler {
     @Getter
     @Setter
     @ApiModel("用户角色参数")
-    class MemberRoleParam{
+    public static class MemberRoleParam{
         @ApiModelProperty("用户ID")
         Integer uId;
         @ApiModelProperty("绑定的角色列表")
